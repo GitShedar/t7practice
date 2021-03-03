@@ -1,0 +1,135 @@
+.App {
+  width: 60%;
+  margin: auto;
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.fill-form {
+  margin: auto;
+  padding-left: 150px;
+  font-size: 1.1em;
+   
+}
+.form-container {
+  border-radius: 5px;
+  margin: auto;
+  padding: 0 10px;
+}
+
+.form-container fieldset {
+  width: 500px;
+  height: 100%;
+  padding: 10px 25px 0px;
+  background-color:#6d311925;
+}
+
+.form-container fieldset legend {
+  font-size: 1.7em;
+  font-weight: bolder;
+  color:#6d3119;
+ 
+}
+/* Set a style for the form element*/
+fieldset.form input, select { 
+  width:100%;
+  border: 1px solid #e3d3be;
+  border-radius: 4px;
+  margin: 0px 0;
+  outline: none;
+  padding: 8px 8px 8px 50px;
+  box-sizing: border-box;
+  transition: 0.3s;
+  position: relative
+}
+
+.form legend {
+  color:#be3019;
+}
+
+.gdpr-btn {
+  width: 500px;
+  height: 100%;
+  width: 100%;
+  padding: 0px 0px 0px 0 px;
+  border-top: 0;
+
+ }
+
+input:focus {
+  border-color: #8bc34a;
+  box-shadow: 0 0 8px 0 #8bc34a;
+}
+
+select:focus {
+  border-color: #8bc34a;
+  box-shadow: 0 0 8px 0 #8bc34a;
+}
+.inputWithIcon input {
+  padding-left: 40px;
+}
+
+.inputWithIcon {
+  position: relative;
+}
+
+.inputWithIcon i {
+  position: absolute;
+  left: 0;
+  top: 27px;
+  padding-top:5px;
+  color: #6d3119;
+  transition: 0.3s;
+ font-size: 2em;
+ z-index:2;
+}
+
+.inputWithIcon input[type="text"]:focus + i {
+  color:#8bc34a;
+}
+   
+/* Set a style for the submit button */
+.btn {
+  background-color: #6d3119;
+  color: #8bc34a;
+  font-size: 20px;
+  font-weight: bolder;
+  padding: 15px 20px;
+  margin-bottom:20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.8
+  }
+
+.btn:hover {
+  color: #8bc34a;
+  background-color: #be3019;
+}
+
+
+
+.App-link {
+  color: #61dafb;
+}
+.simpleform {
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
