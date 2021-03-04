@@ -6,38 +6,68 @@ const cors = require('cors');
 
 const PORT = 8000;
 app.use(cors())
+const fs = require('fs')
 app.use('/form', express.static(path.join(__dirname, '../frontend/index.html')));
 app.use('/pub', express.static(path.join(__dirname, '../frontend/public'))); 
+app.use('/upload', express.static(path.join(__dirname, '../backend/upload'))); 
+app.use('/upload', express.static(path.join(__dirname, '../backend/Data'))); 
 
 // default options
 app.use(fileUpload());
 
-app.get('/ping', function(req, res) {
-  res.send('pong');
-});
-
 app.post('/upload', function(req, res) {
   let sampleFile;
-  let uploadPath;
-
+  let userData;
+  let userDataRead;
   if (!req.files || Object.keys(req.files).length === 0) {
     res.status(400).send('No files were uploaded.');
     return;
   }
+  if (!req.body || Object.keys(req.body).length === 0) {
+    res.status(400).send('No files were uploaded.');
+    return;
+  }
+  console.log(req.body);
+userData = req.body.userData;
+sampleFile = req.files.userFile;
 
-  console.log('req.files >>>', req.files); // eslint-disable-line
 
-  sampleFile = req.files.userfile;
 
-  uploadPath = __dirname + '/upload/' + sampleFile.name;
+  var x = fs.readFileSync('Data/data.json');
+  userDataRead = JSON.parse(x)
+  console.log(userDataRead)
 
-  sampleFile.mv(uploadPath, function(err) {
+
+userDataRead.push(JSON.parse(userData));
+fs.writeFile(
+  'Data/data.json',
+  JSON.stringify(userDataRead, null, 2),
+  function(err) {
+    if (err) return console.log(err);
+    console.log('JSON Updated');
+  }
+  )
+  
+  uploadPath = __dirname + '/upload/' + sampleFile.name; 
+
+  userData = JSON.parse(req.body.userData);
+  dataUploadPath = __dirname + "/Data/" + userData.email.toString().replace("@", "_").replace(",", "_") + ".json";
+  
+
+   sampleFile.mv(uploadPath, function(err) {
     if (err) {
-      return res.status(500).send(err);
+      return res.status(499).send(err);    
     }
 
     res.send('File uploaded to ' + uploadPath);
-  });
+  }); 
+  dataUploadPath, function(err) {
+    if (err) {
+      return res.status(501).send(err);    
+    }
+
+    res.send('File uploaded to ' + dataUploadPath);
+  };
 });
 
 
